@@ -53,10 +53,21 @@ public class GerenciamentoArquivos {
             JOptionPane.showMessageDialog(null, "Um erro inesperado aconteceu:\n"+ ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         }
         finally {
-            if(arquivo.exists()) {
-                arquivo.delete();
+            File pasta = new File("temp");
+            
+            if (pasta.exists()) {
+                //Excluir tudo dentro da pasta
+                File[] arquivos = pasta.listFiles();
+                
+                if (arquivos != null) {
+                    for (File file : arquivos) {
+                        file.delete();
+                    }
+                }
             }
+            //Excluir pasta
+            pasta.delete();
+            System.out.println("Arquivo excluido");
         }
-        
     }
 }
